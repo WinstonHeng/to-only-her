@@ -63,9 +63,15 @@ const messages = [
     "I will be very sad...",
     "I will be very very very sad...",
     "Ok fine, I will stop asking...",
-    "Hmph!",
+    "Hmph! (Cues rabbit sticker)",
     "Just kidding, say yes please! ❤️",
-    "The Box is at the max size already :("
+    "真的不答应吗?",
+    "What am I gonna do with my reservations :'(".
+    "Say yes, pretty pleaseeeeeee :D",
+    "You're really stubborn, aren't you?",
+    "I promise I will make it a good date!",
+    "The Box is at the max size already :(",
+    "There's no need to try anymore! Just click yes hehe"
 ];
 
 let messageIndex = 0;
