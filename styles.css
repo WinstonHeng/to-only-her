@@ -7,22 +7,25 @@ body {
     background-color: #f9e3e3;
     font-family: 'Arial', sans-serif;
     flex-direction: column;
-  }
-  
-  .container {
+    /* Prevent scrolling when the button moves off-center */
+    overflow: hidden; 
+    touch-action: manipulation;
+}
+
+.container {
     text-align: center;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 2.5em;
     color: #d32f2f;
-  }
-  
-  .buttons {
+}
+
+.buttons {
     margin-top: 20px;
-  }
-  
-  .yes-button {
+}
+
+.yes-button {
     font-size: 1.5em;
     padding: 10px 20px;
     margin-right: 10px;
@@ -31,9 +34,12 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .no-button {
+    /* Keep Yes button in front */
+    position: relative;
+    z-index: 1; 
+}
+
+.no-button {
     font-size: 1.5em;
     padding: 10px 20px;
     background-color: #f44336;
@@ -41,11 +47,14 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .gif_container img {
+    /* Crucial for the jumping effect */
+    transition: all 0.2s ease;
+    z-index: 999;
+}
+
+.gif_container img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     margin-top: 20px;
-  }
+}
