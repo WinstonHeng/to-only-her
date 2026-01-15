@@ -3,15 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knew you would say yes!</title>
-    <link rel="stylesheet" href="./yes_style.css">
+    <title>Yay! ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            overflow: hidden; /* Keeps hearts within the screen */
+        }
+        .heart {
+            position: fixed;
+            top: -10%;
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="header_text">Knew you would say yes!</h1>
+        <h1 class="header_text">Hehehe, I knew you would say yes! ❤️</h1>
         <div class="gif_container">
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm9pZ3pueXF0Z3ZueHlkZ3ZueHlkZ3ZueHlkZ3ZueHlkZ3ZueHlkJmVwP12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c7Su6uT4N6F96/giphy.gif" alt="Cute Celebration GIF">
         </div>
     </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Randomly choose between different heart emojis
+            const heartTypes = ['❤️', '💖', '💝', '💕', '🌹'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            // Randomize position and size
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation finishes
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create a heart every 300ms
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
