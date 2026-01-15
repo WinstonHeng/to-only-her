@@ -5,18 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the login screen to keep it pretty */
+        #login-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #ffdde1; 
+        }
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ff4d6d;
+            margin-bottom: 10px;
+            outline: none;
+            width: 80%;
+        }
+        .login-btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Will you be my Valentine?</h1>
-        <div class="buttons">
-            <button class="yes-button" onclick="handleYesClick()">Yes</button>
-            <button class="no-button" onclick="handleNoClick()">No</button>
-        </div>
-        <div class="gif_container">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h2 style="color: #ff4d6d;">❤️ Secret Access ❤️</h2>
+            <p>Enter our anniversary (DDMMYY):</p>
+            <input type="password" id="password-input" placeholder="Password...">
+            <br>
+            <button class="login-btn" onclick="checkPassword()">Unlock</button>
+            <p id="error-message" style="color: #ff4d6d; display: none; margin-top: 10px;">Incorrect! Try again 🌹</p>
         </div>
     </div>
+
+    <div id="main-content" style="display: none;">
+        <div class="container">
+            <h1>Will you be my Valentine?</h1>
+            <div class="buttons">
+                <button class="yes-button" onclick="handleYesClick()">Yes</button>
+                <button class="no-button" onclick="handleNoClick()">No</button>
+            </div>
+            <div class="gif_container">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            
+            // CHANGE THE WORD IN QUOTES BELOW TO YOUR PASSWORD
+            if (password.toLowerCase() === '310825') { 
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+
+        // Allow pressing "Enter" key on keyboard to unlock
+        document.getElementById('password-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
 </body>
 </html>
