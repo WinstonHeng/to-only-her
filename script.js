@@ -49,19 +49,27 @@ function handleNoClick() {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
     
-    // 1. Change the text and grow the Yes button (Your original logic)
+    // 1. Change the text and grow the Yes button
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
-
-    // 2. Move the button to a random position
-    const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
     
-    noButton.style.position = "absolute";
-    noButton.style.left = `${x}px`;
-    noButton.style.top = `${y}px`;
+    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = `${currentSize * 1.3}px`; // Grows Yes button
+
+    // 2. Shrink and Move the "No" button to bottom-left
+    // We use a scale factor that decreases each time, but doesn't go below 0.4
+    const scaleFactor = Math.max(1 - (messageIndex * 0.05), 0.4);
+    
+    noButton.style.position = "fixed"; // Fixed keeps it relative to the screen
+    noButton.style.transition = "all 0.5s ease"; // Makes the movement smooth
+    
+    // Position it at the bottom-left
+    noButton.style.left = "20px"; 
+    noButton.style.bottom = "20px";
+    noButton.style.top = "auto"; // Clear the top position if it was set
+    
+    // Apply the shrinking effect
+    noButton.style.transform = `scale(${scaleFactor})`;
 }
 
 function handleYesClick() {
