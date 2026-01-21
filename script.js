@@ -53,22 +53,25 @@ function handleNoClick() {
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
     
+    // Keeping your preferred 1.5x multiplier
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.3}px`; // Grows Yes button
+    yesButton.style.fontSize = `${currentSize * 1.5}px`;
 
     // 2. Shrink and Move the "No" button to bottom-left
-    // We use a scale factor that decreases each time, but doesn't go below 0.4
-    const scaleFactor = Math.max(1 - (messageIndex * 0.05), 0.4);
+    // Reduces size by 10% each click, stopping at 30% of original size
+    const scaleFactor = Math.max(1 - (messageIndex * 0.1), 0.3);
     
-    noButton.style.position = "fixed"; // Fixed keeps it relative to the screen
-    noButton.style.transition = "all 0.5s ease"; // Makes the movement smooth
+    noButton.style.position = "fixed"; 
+    noButton.style.transition = "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)"; // Smooth "pop" effect
+    noButton.style.zIndex = "999"; 
     
-    // Position it at the bottom-left
+    // Move to bottom-left corner
     noButton.style.left = "20px"; 
     noButton.style.bottom = "20px";
-    noButton.style.top = "auto"; // Clear the top position if it was set
+    noButton.style.top = "auto"; 
+    noButton.style.right = "auto";
     
-    // Apply the shrinking effect
+    // Apply the shrinking
     noButton.style.transform = `scale(${scaleFactor})`;
 }
 
