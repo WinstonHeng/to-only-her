@@ -23,6 +23,9 @@ h1 {
 
 .buttons {
     margin-top: 20px;
+    display: flex;         /* Added */
+    align-items: center;   /* Keeps them centered vertically against each other */
+    justify-content: center; /* Keeps them centered on the page */
 }
 
 .yes-button {
