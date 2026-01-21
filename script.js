@@ -49,30 +49,25 @@ function handleNoClick() {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
     
-    // 1. Change the text and grow the Yes button
+    // 1. Change the text
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
     
-    // Keeping your preferred 1.5x multiplier
+    // 2. Grow the Yes button
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
     yesButton.style.fontSize = `${currentSize * 1.5}px`;
 
-    // 2. Shrink and Move the "No" button to bottom-left
-    // Reduces size by 10% each click, stopping at 30% of original size
+    // 3. Shrink the No button in place
+    // It stays next to the Yes button but gets smaller
     const scaleFactor = Math.max(1 - (messageIndex * 0.1), 0.3);
     
-    noButton.style.position = "fixed"; 
-    noButton.style.transition = "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)"; // Smooth "pop" effect
-    noButton.style.zIndex = "999"; 
-    
-    // Move to bottom-left corner
-    noButton.style.left = "20px"; 
-    noButton.style.bottom = "20px";
-    noButton.style.top = "auto"; 
-    noButton.style.right = "auto";
-    
-    // Apply the shrinking
+    // Ensure smooth resizing
+    noButton.style.transition = "all 0.4s ease";
+    noButton.style.display = "inline-block"; // Ensures it stays on the same line
     noButton.style.transform = `scale(${scaleFactor})`;
+
+    // Optional: Adjust margin to prevent the growing Yes button from pushing the No button too far
+    noButton.style.marginLeft = "10px";
 }
 
 function handleYesClick() {
